@@ -10,11 +10,11 @@ class XmlWriter:
 
     def __init__(self, filepath):
 
-        print "[XmlWriter] initialized with file: %s" % filepath
+        print("[XmlWriter] initialized with file: %s" % filepath)
 
         self.filepath = filepath
         self.tree = etree.parse(self.filepath)
-        print "[XmlWriter] Input XML:-\n", etree.tostring(self.tree.getroot(), pretty_print=True)
+        print("[XmlWriter] Input XML:-\n", etree.tostring(self.tree.getroot(), pretty_print=True))
 
     def create_overview_element(self, des, cit):
         overview = etree.Element('overview')
@@ -187,7 +187,7 @@ class XmlWriter:
             new_root.append(child)
 
         output_xml = etree.tostring(new_root, pretty_print=True)
-        print "[XmlWriter] Input XML:-\n", output_xml
+        print("[XmlWriter] Input XML:-\n", output_xml)
 
         # writing to input xml file
         f = open(self.filepath, "w")

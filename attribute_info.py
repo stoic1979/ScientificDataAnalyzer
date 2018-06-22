@@ -96,38 +96,38 @@ class AttributeInfo:
     def show(self):
         assert self.field_type, "Field type not set for AttributeInfo"
 
-        print "\n=============[ %s ]===============" % self.title
-        print ">> Field Type: %s <<" % self.field_type
-        print "Unique Count . . . . : %s" % str(self.ucnt)
-        print "Data Type .  . . . . : %s" % str(self.dtype)
-        print "Definition 1 . . . . : %s" % str(self.defn1)
-        print "Definition Source 1. : %s" % str(self.dsrc1)
-        print "Definition 2 . . . . : %s" % str(self.defn2)
-        print "Definition Source 2. : %s" % str(self.dsrc2)
-        print "Definition 3 . . . . : %s" % str(self.defn3)
-        print "Definition Source 3. : %s" % str(self.dsrc3)
+        print("\n=============[ %s ]===============" % self.title)
+        print(">> Field Type: %s <<" % self.field_type)
+        print("Unique Count . . . . : %s" % str(self.ucnt))
+        print("Data Type .  . . . . : %s" % str(self.dtype))
+        print("Definition 1 . . . . : %s" % str(self.defn1))
+        print("Definition Source 1. : %s" % str(self.dsrc1))
+        print("Definition 2 . . . . : %s" % str(self.defn2))
+        print("Definition Source 2. : %s" % str(self.dsrc2))
+        print("Definition 3 . . . . : %s" % str(self.defn3))
+        print("Definition Source 3. : %s" % str(self.dsrc3))
 
         if self.field_type == ENUMERATED:
-            print "Unique Index . . .  . : %s" % str(self.en_unique_index)
-            print "Unique Value . . .  . : %s" % str(self.en_unique_val)
-            print "Definition of Value . : %s" % str(self.en_def)
-            print "Source of Value . . . : %s" % str(self.en_src)
+            print("Unique Index . . .  . : %s" % str(self.en_unique_index))
+            print("Unique Value . . .  . : %s" % str(self.en_unique_val))
+            print("Definition of Value . : %s" % str(self.en_def))
+            print("Source of Value . . . : %s" % str(self.en_src))
             return
 
         if self.field_type == RANGE:
-            print "Range Min . . : %s" % str(self.rmin)
-            print "Range Max . . : %s" % str(self.rmax)
-            print "Measure Unit .: %s" % str(self.unit)
-            print "Rersolution . : %s" % str(self.resolution)
+            print("Range Min . . : %s" % str(self.rmin))
+            print("Range Max . . : %s" % str(self.rmax))
+            print("Measure Unit .: %s" % str(self.unit))
+            print("Rersolution . : %s" % str(self.resolution))
             return
 
         if self.field_type == CODESET:
-            print "Codeset Name . . : %s" % str(self.cs_name)
-            print "Codeset Source . : %s" % str(self.cs_src)
+            print("Codeset Name . . : %s" % str(self.cs_name))
+            print("Codeset Source . : %s" % str(self.cs_src))
             return
 
         if self.field_type == UNREPRESENTABLE:
-            print "Description of Values Recroded : %s" % str(self.ur_desc)
+            print("Description of Values Recroded : %s" % str(self.ur_desc))
 
 
 ##############################################################################

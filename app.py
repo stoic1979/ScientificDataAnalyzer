@@ -134,7 +134,7 @@ class Window(QMainWindow):
 
         self.ensureAttributeType()
         if not self.attr_type:
-            print "[WARNING] attributeChanged() :: not attr type !!!"
+            print("[WARNING] attributeChanged() :: not attr type !!!")
             return
 
         self.refresh_enumerated_list_values()
@@ -148,12 +148,12 @@ class Window(QMainWindow):
         ################################################
 
         if not self.csv_reader:
-            print "[WARNING] :: No csv loaded to read values"
+            print("[WARNING] :: No csv loaded to read values")
             return
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] attributeChanged() :: attributes dict is not initialized"
+            print ("[WARNING] attributeChanged() :: attributes dict is not initialized")
 
             # first time - default vals
             self.teAttributeDef1.setText("%s %s" % (ATTRIBUTE_DEFINITION, self.attr_type))
@@ -195,7 +195,7 @@ class Window(QMainWindow):
         if ft:
             self.dict_rbs[ft].setChecked(True)
         else:
-            print "WARNING :: No radio buttion selected for '%s'" % self.attr_type
+            print("WARNING :: No radio buttion selected for '%s'" % self.attr_type)
 
             #FIXME - unchecking all radio buttons or suggest me what to do !!!!
             self.uncheck_all_radio_buttons()
@@ -207,20 +207,20 @@ class Window(QMainWindow):
             self.dict_rbs[k].setChecked(False)
 
     def show_range_widget(self):
-	self.widRange.setHidden(False)
-	self.horizontalLayout.addWidget(self.widRange)
+        self.widRange.setHidden(False)
+        self.horizontalLayout.addWidget(self.widRange)
 
     def show_codeset_widget(self):
-	self.widCodeset.setHidden(False)
-	self.horizontalLayout.addWidget(self.widCodeset)
+        self.widCodeset.setHidden(False)
+        self.horizontalLayout.addWidget(self.widCodeset)
 
     def show_unrepresentable_widget(self):
-	self.widUnrepresentable.setHidden(False)
-	self.horizontalLayout.addWidget(self.widUnrepresentable)
+        self.widUnrepresentable.setHidden(False)
+        self.horizontalLayout.addWidget(self.widUnrepresentable)
 
     def show_enumerated_widget(self):
-	self.widEnumerated.setHidden(False)
-	self.horizontalLayout.addWidget(self.widEnumerated)
+        self.widEnumerated.setHidden(False)
+        self.horizontalLayout.addWidget(self.widEnumerated)
 
     def handleXmlTemplate(self):
         """
@@ -279,9 +279,6 @@ class Window(QMainWindow):
 
         ucnt = self.csv_reader.number_of_Uvalues_per_col(col)
         dtype = str(self.csv_reader.det_datatypes_col(col))
-
-        print "+--> Unique count of '%s' is %d" % (col, ucnt)
-        print "+--> Data type of '%s' is %s" % (col, dtype)
 
         # checking float64 columns for radio buttons
         if dtype == "float64":
@@ -345,7 +342,7 @@ class Window(QMainWindow):
 
         # create attribute info for each col in csv
         for col in self.csv_reader.get_col_pd_names():
-            print "[INFO] populating data for: %s" % col
+            print("[INFO] populating data for: %s" % col)
 
             # creating attribute info
             ai = AttributeInfo( col )
@@ -353,7 +350,7 @@ class Window(QMainWindow):
 
             # ensure field type
             if not ai.field_type:
-                print "[WARNING] :: cant populate attribute info for '%s', as field type is null" % col
+                print("[WARNING] :: cant populate attribute info for '%s', as field type is null" % col)
                 continue
 
             #FIXME or add a fallback field type UNREPRESENTABLE !
@@ -386,11 +383,11 @@ class Window(QMainWindow):
         self.lstEnumUnique.clear()
 
         if not self.csv_reader:
-            print "[WARNING] :: No csv loaded to read values"
+            print("[WARNING] :: No csv loaded to read values")
             return
 
         if not self.attr_type:
-            print "[WARNING] :: refresh_enumerated_list_values() cant find current attribute"
+            print("[WARNING] :: refresh_enumerated_list_values() cant find current attribute")
             return
 
         # adding unique values in enumerated widget's list widget
@@ -410,7 +407,7 @@ class Window(QMainWindow):
     def handleSave(self):
 
         if not self.teXmlTemplate.toPlainText():
-            print "[ERROR] :: XML output not specified"
+            print("[ERROR] :: XML output not specified")
             self.show_msgbox("Error", "Output Xml file not specified !")
             return
 
@@ -424,23 +421,20 @@ class Window(QMainWindow):
         self.xml_writer.save(self.attrs, self.teCitation.toPlainText(), self.teCitation.toPlainText())
 
     def handleSaveClose(self):
-	print "Save and Close"
         self.handleSave()
         QApplication.quit()
 
     def handleCancel(self):
-	print "Cancel"
         QApplication.quit()
 
     def fieldTypeChanged(self):
-
-	self.widRange.setHidden(True)
-	self.widCodeset.setHidden(True)
-	self.widUnrepresentable.setHidden(True)
-	self.widEnumerated.setHidden(True)
+        self.widRange.setHidden(True)
+        self.widCodeset.setHidden(True)
+        self.widUnrepresentable.setHidden(True)
+        self.widEnumerated.setHidden(True)
 
         # remove all widgets from horizontal layout
-	for i in reversed(range(self.horizontalLayout.count())): 
+        for i in reversed(range(self.horizontalLayout.count())): 
             self.horizontalLayout.removeWidget(self.horizontalLayout.itemAt(i).widget())
 
         if self.rbEnumerated.isChecked():
@@ -468,7 +462,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] fieldTypeChanged() :: attributes dict is not initialized"
+            print("[WARNING] fieldTypeChanged() :: attributes dict is not initialized")
             return
 
         # beacuse of async signal/slot for various ui elements
@@ -485,10 +479,10 @@ class Window(QMainWindow):
         """
         convenience funciton to watch attributes
         """
-        print "-------------[ Attributes ]-------------------"
+        print("-------------[ Attributes ]-------------------")
         for k,v in self.attrs.iteritems():
-            print k, v
-        print "----------------------------------------------"
+            print (k, v)
+        print("----------------------------------------------")
 
     def showCurrentAttributeDataInWidgets(self):
         """
@@ -499,7 +493,7 @@ class Window(QMainWindow):
         if not self.attr_type:
             return
 
-        print "[showCurrentAttributeDataInWidgets]"
+        print("[showCurrentAttributeDataInWidgets]")
 
         attr = self.attrs[self.attr_type]
 
@@ -562,7 +556,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleAttributeDefChanged1() :: attributes dict is not initialized"
+            print("[WARNING] handleAttributeDefChanged1() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -577,7 +571,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleAttributeDefChanged2() :: attributes dict is not initialized"
+            print("[WARNING] handleAttributeDefChanged2() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -592,7 +586,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleAttributeDefChanged3() :: attributes dict is not initialized"
+            print("[WARNING] handleAttributeDefChanged3() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -607,7 +601,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[warning] enumDefinitionChanged() :: attributes dict is not initialized"
+            print("[WARNING] enumDefinitionChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -622,7 +616,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[warning] enumSourceChanged() :: attributes dict is not initialized"
+            print("[WARNING] enumSourceChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -635,20 +629,18 @@ class Window(QMainWindow):
         Function is called when ever data is changed in enumerated unique list
         """
 
-        print "enumUniqueChanged cnt: ", self.lstEnumUnique.count()
-
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] enumUniqueChanged() :: attributes dict is not initialized"
+            print("[WARNING] enumUniqueChanged() :: attributes dict is not initialized")
             return
 
         if not self.lstEnumUnique.count():
-            print "[WARNING] enumUniqueChanged() :: lst is empty"
+            print("[WARNING] enumUniqueChanged() :: lst is empty")
             return
 
 
         if not self.lstEnumUnique.currentItem():
-            print "[WARNING] enumUniqueChanged() :: lst has not item selected"
+            print("[WARNING] enumUniqueChanged() :: lst has not item selected")
             return
 
         self.ensureAttributeType()
@@ -664,7 +656,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[warning] handleAttributeSourceChanged1() :: attributes dict is not initialized"
+            print("[WARNING] handleAttributeSourceChanged1() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -679,7 +671,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[warning] handleAttributeSourceChanged2() :: attributes dict is not initialized"
+            print("[WARNING] handleAttributeSourceChanged2() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -694,7 +686,7 @@ class Window(QMainWindow):
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[warning] handleAttributeSourceChanged3() :: attributes dict is not initialized"
+            print("[WARNING] handleAttributeSourceChanged3() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -707,11 +699,11 @@ class Window(QMainWindow):
         Function is called when ever range min is changed
         """
         
-        print "[handleRangeMinChanged] range min: ", self.teRangeMin.toPlainText()
+        print("[handleRangeMinChanged] range min: ", self.teRangeMin.toPlainText())
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleRangeMinChanged() :: attributes dict is not initialized"
+            print("[WARNING] handleRangeMinChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -723,11 +715,11 @@ class Window(QMainWindow):
         """
         Function is called when ever range max is changed
         """
-        print "[handleRangeMaxChanged] range max: ", self.teRangeMax.toPlainText()
+        print("[handleRangeMaxChanged] range max: ", self.teRangeMax.toPlainText())
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleRangeMaxChanged() :: attributes dict is not initialized"
+            print("[WARNING] handleRangeMaxChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -739,11 +731,11 @@ class Window(QMainWindow):
         """
         Function is called when ever range unit is changed
         """
-        print "[handleUnitChanged] range unit: ", self.teUnit.toPlainText()
+        print("[handleUnitChanged] range unit: ", self.teUnit.toPlainText())
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleUnitChanged() :: attributes dict is not initialized"
+            print("[WARNING] handleUnitChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -755,11 +747,11 @@ class Window(QMainWindow):
         """
         Function is called when ever range resolution is changed
         """
-        print "[handleResolutionChanged] resolution: ", self.teResolution.toPlainText()
+        print("[handleResolutionChanged] resolution: ", self.teResolution.toPlainText())
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleResolutionChanged() :: attributes dict is not initialized"
+            print("[WARNING] handleResolutionChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -771,11 +763,11 @@ class Window(QMainWindow):
         """
         Function is called when ever codeset name is changed
         """
-        print "[handleCodesetNameChanged] codeset name: ", self.teCodesetName.toPlainText()
+        print("[handleCodesetNameChanged] codeset name: ", self.teCodesetName.toPlainText())
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleCodesetNameChanged() :: attributes dict is not initialized"
+            print("[WARNING] handleCodesetNameChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -787,11 +779,11 @@ class Window(QMainWindow):
         """
         Function is called when ever codeset source is changed
         """
-        print "[handleCodesetSourceChanged] codeset source: ", self.teCodesetName.toPlainText()
+        print("[handleCodesetSourceChanged] codeset source: ", self.teCodesetName.toPlainText())
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleCodesetSourceChanged() :: attributes dict is not initialized"
+            print("[WARNING] handleCodesetSourceChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -803,11 +795,11 @@ class Window(QMainWindow):
         """
         Function is called when ever UNREPRESENTABLE desc is changed
         """
-        print "[handleUnreprensentableChanged] unrepresentable: ", self.teUnreprDesc.toPlainText()
+        print("[handleUnreprensentableChanged] unrepresentable: ", self.teUnreprDesc.toPlainText())
 
         # if attributes dict is not initialized not need to continue
         if not self.attrs:
-            print "[WARNING] handleUnreprensentableChanged() :: attributes dict is not initialized"
+            print("[WARNING] handleUnreprensentableChanged() :: attributes dict is not initialized")
             return
 
         self.ensureAttributeType()
@@ -826,7 +818,7 @@ class Window(QMainWindow):
         msg.setStandardButtons(QMessageBox.Ok)
 	
         retval = msg.exec_()
-        print "[INFO] Value of pressed message box button:", retval
+        print("[INFO] Value of pressed message box button:", retval)
 
 
 ##############################################################################

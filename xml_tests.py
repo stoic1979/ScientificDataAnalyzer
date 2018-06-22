@@ -57,7 +57,7 @@ root.append(child)
 
 # pretty string
 s = etree.tostring(root, pretty_print=True)
-print s
+print (s)
 
 # Save to XML file
 outFile = open('output.xml', 'w')

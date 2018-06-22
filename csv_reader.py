@@ -8,7 +8,7 @@ import pandas as pd
 class CsvReader:
 
     def __init__(self, filepath):
-        print "[CsvReader] initialized with file: %s" % filepath
+        print("[CsvReader] initialized with file: %s" % filepath)
 
         self.filepath = filepath
 
@@ -129,12 +129,12 @@ if __name__ == '__main__':
 
     # test reading values from columns
     for col in reader.get_col_pd_names():
-        print "Unique values of col '%s': %s" % (col, reader.get_unique_values_col(col))
-        print col, " max: ", reader.get_col_max(col)
-        print col, " min: ", reader.get_col_min(col)
-        print "Colum index for '%s' is %d" % (col, reader.get_col_index(col))
-        print "Colum datatype for '%s' is %s" % (col, reader.det_datatypes_col(col))
-        print "Unique Count for '%s' is %s" % (col, reader.number_of_Uvalues_per_col(col))
+        print ("Unique values of col '%s': %s" % (col, reader.get_unique_values_col(col)))
+        print (col, " max: ", reader.get_col_max(col))
+        print (col, " min: ", reader.get_col_min(col))
+        print ("Colum index for '%s' is %d" % (col, reader.get_col_index(col)))
+        print ("Colum datatype for '%s' is %s" % (col, reader.det_datatypes_col(col)))
+        print ("Unique Count for '%s' is %s" % (col, reader.number_of_Uvalues_per_col(col)))
 
     # check unique values
     print("Unique values per col: %s" % reader.number_of_Uvalues_per_col())
